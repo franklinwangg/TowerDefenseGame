@@ -1,0 +1,18 @@
+3/14/23 => make the console print out the gridElement moving 
+
+3/15/23 => figure out why the enemy keeps getting reset to (0,0)
+
+goal : convert console runner into graphics
+
+goal : get jframe to start drawing the enemy on the panel
+
+goal : upload barbarian image onto java and get it to load properly
+
+goal : create a path for the enemy
+
+goal : get the map to initialize and draw out the initial map properly
+
+goal : figure out why TWO enemies are getting drawn to start out with
+
+goal : make tower shoot miniature balls at enemies that are perpendicularly
+adjacent to them
