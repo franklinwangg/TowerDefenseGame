@@ -12,11 +12,13 @@ import Elements.Enemy;
 import Elements.Goal;
 import Elements.GridElement;
 import Elements.TowerLand;
+import Projectile.Projectile;
 import Towers.Tower;
 
 public class GameLevel extends JPanel implements Runnable{
 
 	public Gridspace[][] map;
+	
 	public Goal goal;
 	public int gridLength;
 	public int gridSize;
@@ -93,9 +95,15 @@ public class GameLevel extends JPanel implements Runnable{
 	public void run() {
 		while(true) {
 			try {
+				System.out.println("rannnn");
 				Thread.sleep(1000);
 				runEnemies();
+				System.out.println("2");
+
 				runTowers();
+				System.out.println("3");
+
+				runProjectiles();
 				repaint();
 
 			} catch (InterruptedException e) {
@@ -109,9 +117,18 @@ public class GameLevel extends JPanel implements Runnable{
 		map[e.x][e.y].setGridElement(e);
 	}
 
+	public void runProjectiles() {
+		
+	}
+	
 	public void runTowers() {
 		for(Tower t : towers) {
+
 			t.shootProjectile();
+			System.out.println("FASD");
+			for(Projectile p : t.getProjectiles()) {
+				p.move(this);
+			}
 		}
 	}
 	
@@ -124,6 +141,7 @@ public class GameLevel extends JPanel implements Runnable{
 
 	private void initializeTower(int x, int y) {
 		map[x][y].setGridElement(new Tower(x, y, null));
+		towers.add(new Tower(x, y, null));
 	}
 	
 	public void initializeMap(int gridspace) {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import Elements.Enemy;
 import Elements.GridElement;
 import Level.GameLevel;
 import Level.Gridspace;
@@ -16,7 +17,6 @@ import Projectile.Effect;
 import Projectile.Projectile;
 
 public class Tower extends GridElement{
-	String direction = "";
 	BufferedImage image;
 	Projectile p;
 	ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
@@ -36,13 +36,33 @@ public class Tower extends GridElement{
 		//		}
 	}
 
+	
+	
 	public void shootProjectile() {
+		System.out.println("shot");
 		projectiles.add(new Projectile(p.x, p.y, p.speed, p.range, p.damage, p.e, 
-				p.direction));
+				"south"));
 	}
-
-	private String chooseDirection() {
+	
+//	private String decideDirectionOfNextProjectile() {
+//		
+//	}
+	
+	public void removeProjectile() {
 		
+	}
+	
+	public ArrayList<Projectile> getProjectiles() {
+		return projectiles;
+	}
+	
+	public void moveProjectiles(GameLevel g) {
+		for(Projectile p : projectiles) {
+			p.move(g);
+			if(p.detectCollision(g)) {
+				projectiles.remove(p);
+			}
+		}
 	}
 	
 	public void paint(Graphics g, GameLevel m) {

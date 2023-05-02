@@ -1,11 +1,15 @@
 package Projectile;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import Elements.Enemy;
 import Elements.GridElement;
+import Elements.TowerLand;
 import Level.GameLevel;
 import Level.Gridspace;
+import Towers.Tower;
 
 public class Projectile {
 	public int x, y, speed, range, damage;
@@ -26,10 +30,11 @@ public class Projectile {
 		
 		this.e = e;
 	}
-
+	
 	public void move(GameLevel m) {
 		this.x = nextGridspace(m).getX();
 		this.y = nextGridspace(m).getY();
+		
 	}
 	
 	public Gridspace nextGridspace(GameLevel m) {
@@ -66,5 +71,12 @@ public class Projectile {
 		return (m.map[x][y].contains() == null);
 	}
 	
+	public void paint(Graphics g, GameLevel m) {
+		g.setColor(Color.green);
+
+		g.fillRect(x * m.gridLength, y * m.gridLength, m.gridLength, 
+				m.gridLength);
+
+	}
 	
 }
